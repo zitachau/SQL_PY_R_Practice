@@ -2,7 +2,7 @@
 
 ***************
 
-All credits goes to Jose Portilla on Udemy
+All credits goes to Jose Portilla on Udemy. Check him out!
 https://www.pieriandata.com/
 https://www.linkedin.com/in/jmportilla/
 
