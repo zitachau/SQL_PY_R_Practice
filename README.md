@@ -16,3 +16,6 @@ Here I learn how to properly use SQL to clean/mine and reorganize data on Postgr
 Some other things I've learned are:
 1. Using statistical tools to interpret data sets while looking for trends/patterns
 2. Preparing reports
+
+
+While learning how to code, I will use these knowledge I've gained to create/analyze mini projects
