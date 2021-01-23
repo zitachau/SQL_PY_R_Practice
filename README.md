@@ -3,8 +3,7 @@
 ***************
 
 All credits goes to Jose Portilla on Udemy. Check him out!
-https://www.pieriandata.com/
-https://www.linkedin.com/in/jmportilla/
+https://www.pieriandata.com/ | https://www.linkedin.com/in/jmportilla/
 
 Thank you for teaching me how to use SQL!
 
