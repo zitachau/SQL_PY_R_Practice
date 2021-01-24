@@ -1,0 +1,77 @@
+*****************
+
+All credits here goes to Jose Portilla on Udemy
+https://www.pieriandata.com/
+https://www.linkedin.com/in/jmportilla/
+
+*****************
+
+# Just a student who loves to learn
+
+# Here were trying to find the customer's first/last name 'Maria Miller' and email from 
+# the customers table. 
+
+# We didn't know if the table had the columns for that in the database. 
+# Let's find out!
+SELECT * FROM customer;
+
+# It's there. So, let's get her email
+SELECT first_name, last_name, email FROM customer
+WHERE first_name = 'Maria' AND last_name = 'Miller';
+
+
+
+# Let's retrieve unique rating types our films could have in our database
+SELECT * FROM film;
+SELECT DISTINCT (rating) FROM film;
+
+# A customer is late on their movie return, and we've mailed them a letter to their
+# address at '259 Ipoh Drive'. Let's call them
+SELECT phone FROM address
+WHERE address = '259 Ipoh Drive';
+
+
+# What are the titles of the 5 shortest (in length of runtime) movies?
+SELECT title, length FROM film
+ORDER BY length ASC
+LIMIT 5;
+
+
+# If a customer wants to watch a movie that's 50 minutes or less in runtime,
+# how many options does she have?
+SELECT COUNT (*) FROM film
+WHERE length <= '50';
+
+# 37!
+
+
+# Let's see how many films have a rating of R and a replacement cost
+# between $5 andd $15
+SELECT COUNT (*) FROM film
+WHERE rating = 'R' AND replacement_cost
+BETWEEN 5 AND 15; # 52!
+
+
+# What about the names of the films that have the word Truman somewhere in the title?
+SELECT title FROM film
+WHERE title LIKE '%Truman%';
+
+
+# We're going to reward our top 5 spending customers with a $50 visa card
+# Let's find their ids
+SELECT customer_id, SUM(amount)
+FROM payment
+GROUP BY customer_id
+ORDER BY SUM(amount) DESC
+LIMIT 5;
+
+
+
+
+
+
+
+
+
+
+
