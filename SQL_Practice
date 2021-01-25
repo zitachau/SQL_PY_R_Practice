@@ -145,10 +145,41 @@ AND cd.members.firstname = 'Tracy'
 
 
 
+***************
+Creating new database/table and inserting information
+***************
+
+# Let's create a students table
+CREATE TABLE students(
+	student_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(50) NOT NULL,
+	last_name VARCHAR(50) NOT NULL,
+	homeroom_number INTEGER,
+	phone VARCHAR(50) UNIQUE NOT NULL,
+	email VARCHAR(250) UNIQUE,
+	grad_year INTEGER);
 
 
 
+# Let's create another table called teachers
+CREATE TABLE teachers(
+  teacher_id SERIAL PRIMARY KEY,
+  first_name VARCHAR(50) NOT NULL,
+  last_name VARCHAR(50) NOT NULL,
+  homeroom_number INTEGER,
+  department VARCHAR(50),
+  email VARCHAR(250) UNIQUE,
+  phone VARCHAR(50) UNIQUE NOT NULL);
 
+
+# Now, let's insert some information to the students table
+INSERT INTO students(first_name,last_name,phone,grad_year,homeroom_number)
+VALUES('Zita','Chau','777-555-1234',2021,5);
+
+
+# Let's also insert some information to the teachers table
+INSERT INTO teachers(first_name,last_name,homeroom_number,department,email,phone)
+VALUES('Daisy','Green',5,'Biology','dgreen@school.org','777-555-4321');
 
 
 
