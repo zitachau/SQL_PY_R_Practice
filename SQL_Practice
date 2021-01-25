@@ -101,6 +101,21 @@ ON film_actor.film_id = film.film_id
 WHERE first_name = 'Jennifer' and last_name = 'Davis';
 
 
+**********
+Timestamps
+**********
+
+# Let's find unique payment date in months
+SELECT DISTINCT TO_CHAR(payment_date,'Month')
+FOM payment;
+
+
+
+# What about the most transactions that occurred on a Tuesday?
+SELECT COUNT (*) FROM payment
+WHERE EXTRACT(DOW FROM payment_date) = 1;
+
+
 
 
 
