@@ -107,7 +107,7 @@ Timestamps
 
 # Let's find unique payment date in months
 SELECT DISTINCT TO_CHAR(payment_date,'Month')
-FOM payment;
+FROM payment;
 
 
 
@@ -116,6 +116,32 @@ SELECT COUNT (*) FROM payment
 WHERE EXTRACT(DOW FROM payment_date) = 1;
 
 
+
+
+**************
+Using new database
+**************
+
+
+
+# Lets make a list of the start times for bookings on the tennis courts on 2012-09-21
+SELECT cd.bookings.starttime, cd.facilities.name
+FROM cd.bookings
+INNER JOIN cd.facilities
+ON cd.bookings.facid = cd.facilities.facid
+WHERE cd.facilities.name LIKE 'Tennis%'
+AND cd.bookings.starttime BETWEEN '2012-09-21' and '2012-09-22'
+ORDER BY cd.bookings.starttime;
+
+
+
+# Lets find a list of the start times for bookings by members named 'Tracy Smith'
+SELECT COUNT (*)
+FROM cd.members
+INNER JOIN cd.bookings
+ON cd.members.memid = cd.bookings.memid
+WHERE cd.members.surname = 'Smith'
+AND cd.members.firstname = 'Tracy'
 
 
 
