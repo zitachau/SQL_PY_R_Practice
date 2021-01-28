@@ -182,4 +182,97 @@ INSERT INTO teachers(first_name,last_name,homeroom_number,department,email,phone
 VALUES('Daisy','Green',5,'Biology','dgreen@school.org','777-555-4321');
 
 
+# Let's select the customer_id column, insert new terms and name the new column customer_class
+SELECT customer_id,
+CASE
+	WHEN(customer_id <= 100) then 'Premium'
+	WHEN(customer_id between 100 and 200) then 'Plus'
+	ELSE 'Normal'
+END AS customer_class
+FROM customer;
 
+
+# Let's now do a raffle. Customer_id 2 would be the winner and 3 would be second place. All 
+# customers are normal
+SELECT customer_id,
+CASE customer_id
+	WHEN 2 then 'Winner'
+	WHEN 5 then 'Second Place'
+	ELSE 'Normal'
+END AS raffle_results
+FROM customer;
+
+
+# Let's count how many rental rate are bargains, regular, and premium
+SELECT
+SUM(CASE rental_rate 
+	WHEN 0.99 then 1
+	ELSE 0
+END) AS bargains,
+SUM(CASE rental_rate
+   	WHEN 2.99 then 1
+   ELSE 0
+END) AS regular,
+SUM(CASE rental_rate
+   	WHEN 4.99 then 1
+   ELSE 0
+END) AS premium
+FROM film;
+
+
+
+
+
+# Does not return null values
+SELECT item,(price - COALESCE(discount,0))
+AS final
+FROM table;
+
+
+
+# Checking what the character length is for inventory id
+SELECT CHAR_LENGTH (cast(inventory_id as VARCHAR))
+FROM rental;
+
+
+
+# Finding the ratio of department A and B
+SELECT (
+SUM(CASE WHEN department = 'A' then 1 ELSE 0 END)/
+	NULLIF(SUM(CASE WHEN department = 'B' then 1 ELSE 0 END),0)
+) AS department_ratio
+FROM depts;
+
+
+
+
+# Creating a view for customer table
+CREATE VIEW customer_info AS
+SELECT first_name,last_name,address
+FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id;
+
+# Creating/replacing view
+CREATE OR REPLACE VIEW customer_info AS
+SELECT first_name,last_name,address,district FROM customer
+INNER JOIN address
+ON customer.address_id = address.address_id;
+
+
+# Deleting view
+DROP VIEW IF EXISTS customer_info
+ALTER VIEW customer_info RENAME TO c_info;
+
+
+
+# Connecting postgresql to python
+# Secret = 'password'
+import psycopg2 as pg2
+conn = pg2.connect(database='dvdrental',user='postgres',password='Secret')
+
+cur = conn.cursor()
+cur.execute('SELECT * FROM payment')
+data = cur.fetchone()
+
+conn.close()
